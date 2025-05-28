@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="player.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .center { position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; }
+      .player { position: relative !important; }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div class="player">
+            <div class="album-cover">
+                <div class="image"></div>
+            </div>
+            <div class="panel">
+                <div class="song-info">
+                    <h2>All I Ever Need</h2>
+                    <p>Austin Mahone</p>
+                </div>
+                <div class="controls">
+                    <button class="heart"><i class="fas fa-heart"></i></button>
+                    <button class="backward"><i class="fas fa-backward"></i></button>
+                    <button class="play"><i class="fas fa-play"></i></button>
+                    <button class="forward"><i class="fas fa-forward"></i></button>
+                    <button id="expand-button"><i class="fas fa-expand"></i></button>
+                </div>
+                <div class="timeline">
+                    <span class="current-time">0:00</span>
+                    <div class="line">
+                        <div class="current"></div>
+                    </div>
+                    <span class="total-time">0:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="audio" src="All I Ever Need   Austin Mahone.mp3" loop></audio>
+    <script src="player.js"></script>
+</body>
+</html> 

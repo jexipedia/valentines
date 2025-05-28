@@ -8,9 +8,167 @@
     <script src="main.js" type="text/javascript"></script>
     <link rel="icon" href="public/images/favicon.png" type="image/x-icon" />
     <title>Flowers</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .custom-player-center { position: fixed; top: 35%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; }
+    </style>
   </head>
 
   <body class="not-loaded">
+    <!-- Custom Music Player -->
+    <div class="custom-player-center">
+      <!-- From Uiverse.io by hoshikawamaki -->
+      <div class="flex flex-col items-center group/he select-none">
+        <div class="relative z-0 h-16 -mb-2 transition-all duration-200 group-hover/he:h-0">
+          <svg width="128" height="128" viewBox="0 0 128 128" class="duration-500 border-4 rounded-full shadow-md border-zinc-400 border-spacing-5 animate-[spin_3s_linear_infinite] transition-all">
+            <svg>
+              <rect width="128" height="128" fill="black"></rect>
+              <circle cx="20" cy="20" r="2" fill="white"></circle>
+              <circle cx="40" cy="30" r="2" fill="white"></circle>
+              <circle cx="60" cy="10" r="2" fill="white"></circle>
+              <circle cx="80" cy="40" r="2" fill="white"></circle>
+              <circle cx="100" cy="20" r="2" fill="white"></circle>
+              <circle cx="120" cy="50" r="2" fill="white"></circle>
+              <circle cx="90" cy="30" r="10" fill="white" fill-opacity="0.5"></circle>
+              <circle cx="90" cy="30" r="8" fill="white"></circle>
+              <path d="M0 128 Q32 64 64 128 T128 128" fill="purple" stroke="black" stroke-width="1"></path>
+              <path d="M0 128 Q32 48 64 128 T128 128" fill="mediumpurple" stroke="black" stroke-width="1"></path>
+              <path d="M0 128 Q32 32 64 128 T128 128" fill="rebeccapurple" stroke="black" stroke-width="1"></path>
+              <path d="M0 128 Q16 64 32 128 T64 128" fill="purple" stroke="black" stroke-width="1"></path>
+              <path d="M64 128 Q80 64 96 128 T128 128" fill="mediumpurple" stroke="black" stroke-width="1"></path>
+            </svg>
+          </svg>
+          <div class="absolute z-10 w-8 h-8 bg-white border-4 rounded-full shadow-sm border-zinc-400 top-12 left-12"></div>
+        </div>
+        <div class="z-30 flex flex-col w-40 h-20 transition-all duration-300 bg-white shadow-md group-hover/he:h-40 group-hover/he:w-72 rounded-2xl shadow-zinc-400">
+          <div class="flex flex-row w-full h-0 group-hover/he:h-20">
+            <div class="relative flex items-center justify-center w-24 h-24 group-hover/he:-top-6 group-hover/he:-left-4 opacity-0 group-hover/he:animate-[spin_3s_linear_infinite] group-hover/he:opacity-100 transition-all duration-100">
+              <!-- Album art SVG repeated -->
+              <svg width="96" height="96" viewBox="0 0 128 128" class="duration-500 border-4 rounded-full shadow-md border-zinc-400 border-spacing-5">
+                <svg>
+                  <rect width="128" height="128" fill="black"></rect>
+                  <circle cx="20" cy="20" r="2" fill="white"></circle>
+                  <circle cx="40" cy="30" r="2" fill="white"></circle>
+                  <circle cx="60" cy="10" r="2" fill="white"></circle>
+                  <circle cx="80" cy="40" r="2" fill="white"></circle>
+                  <circle cx="100" cy="20" r="2" fill="white"></circle>
+                  <circle cx="120" cy="50" r="2" fill="white"></circle>
+                  <circle cx="90" cy="30" r="10" fill="white" fill-opacity="0.5"></circle>
+                  <circle cx="90" cy="30" r="8" fill="white"></circle>
+                  <path d="M0 128 Q32 64 64 128 T128 128" fill="purple" stroke="black" stroke-width="1"></path>
+                  <path d="M0 128 Q32 48 64 128 T128 128" fill="mediumpurple" stroke="black" stroke-width="1"></path>
+                  <path d="M0 128 Q32 32 64 128 T128 128" fill="rebeccapurple" stroke="black" stroke-width="1"></path>
+                  <path d="M0 128 Q16 64 32 128 T64 128" fill="purple" stroke="black" stroke-width="1"></path>
+                  <path d="M64 128 Q80 64 96 128 T128 128" fill="mediumpurple" stroke="black" stroke-width="1"></path>
+                </svg>
+              </svg>
+              <div class="absolute z-10 w-6 h-6 bg-white border-4 rounded-full shadow-sm border-zinc-400 top-9 left-9"></div>
+            </div>
+            <div class="flex flex-col justify-center w-full pl-3 -ml-24 overflow-hidden group-hover/he:-ml-3 text-nowrap">
+              <p class="text-xl font-bold">All I Ever Need</p>
+              <p class="text-zinc-600">Austin Mahone</p>
+            </div>
+          </div>
+          <div class="flex flex-row mx-3 mt-3 bg-indigo-100 rounded-md min-h-4 group-hover/he:mt-0">
+            <span class="hidden pl-3 text-sm text-zinc-600 group-hover/he:inline-block" id="currentTime">0:00</span>
+            <input id="progressBar" type="range" min="0" max="100" value="0" class="w-24 group-hover/he:w-full flex-grow h-1 mx-2 my-auto bg-gray-300 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-zinc-400 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md" />
+            <span class="hidden pr-3 text-sm text-zinc-600 group-hover/he:inline-block" id="totalTime">3:45</span>
+          </div>
+          <div class="flex flex-row items-center justify-center flex-grow mx-3 space-x-5">
+            <label for="playMode" class="flex items-center justify-center w-0 h-full cursor-pointer group-hover/he:w-12">
+              <input type="checkbox" id="playMode" class="hidden peer/playMode" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat peer-checked/playMode:hidden">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden feather feather-shuffle peer-checked/playMode:inline-block">
+                <polyline points="16 3 21 3 21 8"></polyline>
+                <line x1="4" y1="20" x2="21" y2="3"></line>
+                <polyline points="21 16 21 21 16 21"></polyline>
+                <line x1="15" y1="15" x2="21" y2="21"></line>
+                <line x1="4" y1="4" x2="9" y2="9"></line>
+              </svg>
+            </label>
+            <div class="flex items-center justify-center w-12 h-full cursor-pointer" id="backwardBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-skip-back">
+                <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                <line x1="5" y1="19" x2="5" y2="5"></line>
+              </svg>
+            </div>
+            <label for="playStatus" class="flex items-center justify-center w-12 h-full cursor-pointer">
+              <input type="checkbox" name="playStatus" id="playStatus" class="hidden peer/playStatus" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play peer-checked/playStatus:hidden" id="playIcon">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden feather feather-pause peer-checked/playStatus:inline-block" id="pauseIcon">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </label>
+            <div class="flex items-center justify-center w-12 h-full cursor-pointer" id="forwardBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-skip-forward">
+                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                <line x1="19" y1="5" x2="19" y2="19"></line>
+              </svg>
+            </div>
+            <div class="flex items-center justify-center w-12 h-full cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-0 feather feather-list group-hover/he:w-12">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <audio id="customAudio" src="All I Ever Need   Austin Mahone.mp3" autoplay></audio>
+    </div>
+    <script>
+      // Basic JS for play/pause/seek
+      const audio = document.getElementById('customAudio');
+      const playStatus = document.getElementById('playStatus');
+      const progressBar = document.getElementById('progressBar');
+      const currentTime = document.getElementById('currentTime');
+      const totalTime = document.getElementById('totalTime');
+      const backwardBtn = document.getElementById('backwardBtn');
+      const forwardBtn = document.getElementById('forwardBtn');
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+      audio.addEventListener('loadedmetadata', () => {
+        totalTime.textContent = formatTime(audio.duration);
+        progressBar.max = Math.floor(audio.duration);
+      });
+      audio.addEventListener('timeupdate', () => {
+        currentTime.textContent = formatTime(audio.currentTime);
+        progressBar.value = Math.floor(audio.currentTime);
+      });
+      progressBar.addEventListener('input', (e) => {
+        audio.currentTime = e.target.value;
+      });
+      playStatus.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+      backwardBtn.addEventListener('click', () => {
+        audio.currentTime = Math.max(audio.currentTime - 10, 0);
+      });
+      forwardBtn.addEventListener('click', () => {
+        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+      });
+    </script>
+
     <section>
       <div class="night"></div>
       <div class="flowers">
@@ -328,15 +486,47 @@
       <canvas id="starfield"></canvas>
       <button id="valentinesButton">Click Me! ❤</button>
       <script src="script.js"></script>
-
-      <audio controls autoplay>
-        <source src="All I Ever Need   Austin Mahone.mp3" type="audio/ogg" />
-        <source src="All I Ever Need   Austin Mahone.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
     </section>
-    <!-- Add these buttons at the top of your body -->
-    <button id="audioControl">🔇 Play Music</button>
-    <button id="valentinesButton">Click Me! ❤</button>
+
+    <!-- Valentine Modal/Button -->
+    <div id="valentineModal" class="fixed left-1/2 z-[10000] flex items-start justify-center w-full" style="top: 65%; transform: translateX(-50%);">
+      <div class="bg-white bg-opacity-0 rounded-2xl shadow-lg p-8 flex flex-col items-center">
+        <p class="text-2xl font-bold mb-6 text-pink-600">Will you be my valentine?</p>
+        <div class="flex space-x-6">
+          <button id="yesBtn" class="px-6 py-2 bg-pink-500 text-white rounded-lg font-semibold text-lg hover:bg-pink-600 transition">Yes</button>
+          <button id="noBtn" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg font-semibold text-lg transition relative">No</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // No button movement logic
+      const noBtn = document.getElementById('noBtn');
+      const modal = document.getElementById('valentineModal');
+      const yesBtn = document.getElementById('yesBtn');
+      let moveCount = 0;
+      function moveNoButton() {
+        const modalRect = modal.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
+        const maxX = modalRect.width - btnRect.width - 20;
+        const maxY = modalRect.height - btnRect.height - 20;
+        const randX = Math.random() * maxX;
+        const randY = Math.random() * maxY;
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = randX + 'px';
+        noBtn.style.top = randY + 'px';
+        moveCount++;
+      }
+      noBtn.addEventListener('mouseenter', moveNoButton);
+      noBtn.addEventListener('mousedown', moveNoButton);
+      // Yes button logic
+      yesBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        // Show the message
+        let msg = document.createElement('div');
+        msg.className = 'w-full flex justify-center mt-8';
+        msg.innerHTML = '<span class="text-2xl font-bold text-pink-400">I knew you wouldn\'t say no</span>';
+        document.body.appendChild(msg);
+      });
+    </script>
   </body>
 </html>
