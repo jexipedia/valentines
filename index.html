@@ -520,12 +520,13 @@
       noBtn.addEventListener('mousedown', moveNoButton);
       // Yes button logic
       yesBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        // Show the message
-        let msg = document.createElement('div');
-        msg.className = 'w-full flex justify-center mt-8';
-        msg.innerHTML = '<span class="text-2xl font-bold text-pink-400">I knew you wouldn\'t say no</span>';
-        document.body.appendChild(msg);
+        // Replace modal content with the message
+        modal.innerHTML = `<div class='bg-transparent flex flex-col items-center'>
+          <span class="text-3xl font-extrabold bg-gradient-to-r from-pink-400 via-fuchsia-500 to-red-400 bg-clip-text text-transparent animate-bounce drop-shadow-lg">
+            I knew you wouldn't say no!
+          </span>
+          <span class="text-3xl drop-shadow-lg mt-2">&#128527;</span>
+        </div>`;
       });
     </script>
   </body>
